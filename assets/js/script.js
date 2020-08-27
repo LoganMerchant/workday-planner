@@ -3,4 +3,16 @@ var currentDay = function() {
     $("#currentDay").text(date);
 };
 
+var timeBlockSet = function() {
+    var timeBlock = $('.hour'); 
+    var hour = 9;
+
+    timeBlock.each(function() {
+        $(this).text(moment().set('hour', hour).format('ha'));
+        timeBlock.addClass('text-right');
+        hour++;
+    });
+};
+
 currentDay();
+timeBlockSet();
