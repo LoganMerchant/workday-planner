@@ -11,10 +11,10 @@ var timeBlockSet = function() {
         var workHour = moment().set('hour', hour).format('ha');
 
         $(this).text(workHour);
+        $(this).attr('data-id', hour);
+
         hour++;
     });
-
-    timeCheck();
 };
 
 var timeCheck = function () {
@@ -39,5 +39,17 @@ var timeCheck = function () {
     });
 };
 
+$('.time-block').on('click', 'textarea', function() {
+    var text = $(this).text().trim();
+    var textInput = $('<textarea>')
+    .addClass('description col-10')
+    
+    $(this).text(text);
+    
+
+    $(this).trigger('focus');
+});
+
 currentDay();
 timeBlockSet();
+timeCheck();
