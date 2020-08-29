@@ -6,6 +6,7 @@ var currentDay = function() {
 var timeBlockSet = function() {
     var timeBlock = $('.hour p'); 
     var hour = 9;
+    var saveBtn = $('.saveBtn');
 
     timeBlock.each(function() {
         var workHour = moment().set('hour', hour).format('ha');
@@ -15,6 +16,10 @@ var timeBlockSet = function() {
 
         hour++;
     });
+
+    saveBtn.each(function() {
+        
+    })
 };
 
 var timeCheck = function () {
@@ -35,18 +40,15 @@ var timeCheck = function () {
         };   
         hour++;
 
-        console.log($(this));
+        console.log(this);
     });
 };
 
 $('.time-block').on('click', 'textarea', function() {
     var text = $(this).text().trim();
-    var textInput = $('<textarea>')
-    .addClass('description col-10')
     
     $(this).text(text);
     
-
     $(this).trigger('focus');
 });
 
