@@ -1,3 +1,5 @@
+tasks = [];
+
 var currentDay = function() {
     var date = moment().format('dddd, MMMM Do, YYYY');
     $("#currentDay").text(date);
@@ -13,6 +15,7 @@ var timeBlockSet = function() {
 
         $(this).text(workHour);
         $(this).attr('data-id', hour);
+        // console.log(this);
 
         hour++;
     });
@@ -39,10 +42,14 @@ var timeCheck = function () {
             $(this).addClass('future');
         };   
         hour++;
-
-        console.log(this);
     });
 };
+
+var saveTasks = function() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+var loadTasks = function() {}
 
 $('.time-block').on('click', 'textarea', function() {
     var text = $(this).text().trim();
@@ -50,6 +57,18 @@ $('.time-block').on('click', 'textarea', function() {
     $(this).text(text);
     
     $(this).trigger('focus');
+});
+
+$('.saveBtn').on('click', function() {
+    var hour = $(this).parent('.time-block').find('p').attr('data-id');
+    var text = $(this).parent('.time-block').find('textarea').val().trim();
+
+    tasks.push({
+        hour: hour,
+        text: text,
+    });
+
+    saveTasks();
 });
 
 currentDay();
