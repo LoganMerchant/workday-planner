@@ -25,3 +25,4 @@ To date, this is the project that I found to be the most interesting. With that 
 [Workday Planner](https://loganmerchant.github.io/workday-planner/)
 
 ## Screenshots
+![Workday Planner Gif](./assets/images/workday-planner.gif)
