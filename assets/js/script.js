@@ -2,13 +2,15 @@ tasks = [];
 
 var currentDay = function() {
     var date = moment().format('dddd, MMMM Do, YYYY');
+
     $("#currentDay").text(date);
+
+    timeBlockSet();
 };
 
 var timeBlockSet = function() {
     var timeBlock = $('.hour p'); 
     var hour = 9;
-    var saveBtn = $('.saveBtn');
 
     timeBlock.each(function() {
         var workHour = moment().set('hour', hour).format('ha');
@@ -19,9 +21,7 @@ var timeBlockSet = function() {
         hour++;
     });
 
-    saveBtn.each(function() {
-        
-    })
+    timeCheck();
 };
 
 var timeCheck = function () {
@@ -42,6 +42,8 @@ var timeCheck = function () {
         };   
         hour++;
     });
+
+    loadTasks();
 };
 
 var saveTasks = function() {
@@ -98,6 +100,3 @@ $('.saveBtn').on('click', function() {
 });
 
 currentDay();
-timeBlockSet();
-timeCheck();
-loadTasks();
