@@ -15,7 +15,6 @@ var timeBlockSet = function() {
 
         $(this).text(workHour);
         $(this).attr('data-id', hour);
-        console.log(this);
 
         hour++;
     });
@@ -51,7 +50,26 @@ var saveTasks = function() {
 
 var loadTasks = function() {
     tasks = JSON.parse(localStorage.getItem('tasks'));
-;}
+
+    $(".time-block").each(function() {
+        if (!tasks) {
+            tasks = [{
+                hour: 9,
+                text: ''
+            }]
+        };
+        
+        var hour = $(this).children('.hour').find('p').attr('data-id');
+        var hourEvent = $(this).children('textarea');
+        var arrHour = tasks.find(o => o.hour === hour);
+
+        if (!arrHour) {
+            hourEvent.text("");
+        } else {
+            hourEvent.text(arrHour.text);
+        };
+    });
+};
 
 $('.time-block').on('click', 'textarea', function() {
     var text = $(this).text().trim();
@@ -82,4 +100,4 @@ $('.saveBtn').on('click', function() {
 currentDay();
 timeBlockSet();
 timeCheck();
-// loadTasks();
+loadTasks();
